@@ -13,7 +13,7 @@ class Model private constructor() {
             val student = Student(
                 name = "Ben Shapiro $i",
                 id = i.toString(),
-                avatarUrl = "",
+                avatarUrl = "avatar.png",
                 isChecked = false
             )
             students.add(student)
