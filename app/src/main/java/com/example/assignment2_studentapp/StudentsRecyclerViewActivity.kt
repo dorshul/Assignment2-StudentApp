@@ -21,10 +21,13 @@ interface OnItemClickListener {
 }
 class StudentsRecyclerViewActivity : AppCompatActivity() {
     var students: MutableList<Student>? = null
+    var recyclerView: RecyclerView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_students_recycler_view)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -38,13 +41,15 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        recyclerView = findViewById(R.id.students_recycler_view)
+        recyclerView?.setHasFixedSize(true)
 
-        students = Model.shared.students
-        val recyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
-        recyclerView.setHasFixedSize(true)
+
+
         val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-        val adapter = StudentsRecyclerAdapter(students)
+        recyclerView?.layoutManager = layoutManager
+
+        val adapter = StudentsRecyclerAdapter(Model.shared.students)
         adapter.listener = object : OnItemClickListener {
             override fun onItemClick(position: Int) {
                 Log.d("TAG", "On click Activity listener on position $position")
@@ -56,6 +61,12 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
                 Log.d("TAG", "On student clicked name: ${student?.name}")
             }
         }
-        recyclerView.adapter = adapter
+        recyclerView?.adapter = adapter
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        recyclerView?.adapter?.notifyDataSetChanged()
     }
 }
