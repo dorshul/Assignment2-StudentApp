@@ -3,6 +3,8 @@ package com.example.assignment2_studentapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,7 +30,21 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        
+
+        class Listener : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+        val addStudentButton: Button = findViewById(R.id.student_details_add_student_button)
+        addStudentButton.setOnClickListener {
+            val intent = Intent(this, AddStudentActivity::class.java)
+            startActivity(intent)
+        }
+
+
         students = Model.shared.students
         val recyclerView: RecyclerView = findViewById(R.id.students_recycler_view)
         recyclerView.setHasFixedSize(true)

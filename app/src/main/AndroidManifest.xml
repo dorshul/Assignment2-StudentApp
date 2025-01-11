@@ -13,10 +13,11 @@
         android:theme="@style/Theme.Assignment2_StudentApp"
         tools:targetApi="31">
         <activity
+            android:name=".AddStudentActivity"
+            android:exported="false" />
+        <activity
             android:name=".StudentDetailsActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".StudentsRecyclerViewActivity"
             android:exported="true">
