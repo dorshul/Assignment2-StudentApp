@@ -31,12 +31,6 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
             insets
         }
 
-        class Listener : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                TODO("Not yet implemented")
-            }
-
-        }
 
         val addStudentButton: Button = findViewById(R.id.student_details_add_student_button)
         addStudentButton.setOnClickListener {
