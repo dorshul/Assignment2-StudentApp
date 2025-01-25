@@ -31,10 +31,4 @@ class StudentsRecyclerAdapter(
         )
     }
 
-    // Method to update the dataset
-//    public fun updateStudents(newStudents: List<Student>) {
-//        students.clear()
-//        students.addAll(newStudents)
-//        notifyDataSetChanged()
-//    }
 }

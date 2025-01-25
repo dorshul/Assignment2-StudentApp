@@ -31,7 +31,6 @@ class StudentViewHolder(
         itemView.setOnClickListener {
             Log.d("TAG", "On click listener on position $adapterPosition")
             listener?.onItemClick(adapterPosition)
-//            listener?.onItemClick(student)
         }
     }
     fun bind(student: Student?, position: Int) {

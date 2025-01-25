@@ -44,7 +44,6 @@ class AddStudentActivity : AppCompatActivity() {
             Model.shared.students.add(newStudent)
 
 
-            // Finish the activity and go back
             Toast.makeText(this, "Student added successfully!", Toast.LENGTH_SHORT).show()
             finish()
         }

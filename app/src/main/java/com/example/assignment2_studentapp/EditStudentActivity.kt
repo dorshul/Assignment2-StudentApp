@@ -23,7 +23,6 @@ class EditStudentActivity : AppCompatActivity() {
         val cancelButton: Button = findViewById(R.id.activity_edit_student_cancel_button)
         val deleteButton: Button = findViewById(R.id.activity_edit_student_delete_button)
 
-        // Retrieve the student details from the intent
         position = intent.getIntExtra("position", -1)
         if (position >= 0) {
             val student = Model.shared.students[position]
@@ -34,7 +33,6 @@ class EditStudentActivity : AppCompatActivity() {
             finish()
         }
 
-        // Save button functionality
         saveButton.setOnClickListener {
             val updatedName = nameInput.text.toString()
             val updatedId = idInput.text.toString()
@@ -44,25 +42,26 @@ class EditStudentActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Update the student in the shared model
             val previousStudent = Model.shared.students[position]
             val updatedStudent = Student(updatedName, updatedId, previousStudent.avatarUrl, previousStudent.isChecked)
             Model.shared.students[position] = updatedStudent
 
             Toast.makeText(this, "Student updated successfully!", Toast.LENGTH_SHORT).show()
-            finish() // Close the activity and return
+
+            val intent = Intent(this, StudentsRecyclerViewActivity::class.java)
+            startActivity(intent)
+
         }
 
-        // Cancel button functionality
         cancelButton.setOnClickListener {
-            finish() // Close the activity without saving changes
+            finish()
         }
 
-        // Delete button functionality
         deleteButton.setOnClickListener {
             Model.shared.students.removeAt(position)
             Toast.makeText(this, "Student deleted successfully!", Toast.LENGTH_SHORT).show()
-            finish() // Close the activity and return
+            val intent = Intent(this, StudentsRecyclerViewActivity::class.java)
+            startActivity(intent)
         }
     }
 }
